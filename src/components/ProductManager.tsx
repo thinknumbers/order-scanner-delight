@@ -209,13 +209,13 @@ const ProductManager = () => {
         imageUrl = publicUrl;
       }
       
-      // Insert product
+      // Insert product - Fix #1: Converting numeric price string to string for Supabase
       const { data: newProduct, error } = await supabase
         .from('products')
         .insert({
           name: productForm.name,
           description: productForm.description,
-          price: parseFloat(productForm.price),
+          price: productForm.price, // Changed from parseFloat(productForm.price)
           category: productForm.category,
           popular: productForm.popular,
           image_url: imageUrl
